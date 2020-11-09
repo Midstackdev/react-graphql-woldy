@@ -3,18 +3,34 @@ import gql from 'graphql-tag'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
+import User from './models/User.js'
+import Post from './models/Post.js'
+
 const env = dotenv.config()
 
 const { ApolloServer } = apollo
 
 const typeDefs = gql`
+  type Post{
+    id: ID!
+    body: String!
+    username: String!
+    createdAt: String!
+  }
   type Query{
-    sayHi: String!
+    getPosts: [Post]
   }
 `
 const resolvers = {
   Query: {
-    sayHi: () => 'Hello World'
+    async getPosts () {
+      try{
+        const posts = await Post.find()
+        return posts
+      }catch(err) {
+        throw new Error(err)
+      }
+    } 
   }
 }
 
