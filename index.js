@@ -14,7 +14,8 @@ const { ApolloServer } = apollo
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: ({req}) => ({ req })
 })
 // console.log(process.env.DB_NAME)
 
