@@ -32,7 +32,7 @@ export default {
   Mutation: {
     async createPost(_, { body }, context){
       const user = checkAuth(context)
-      console.log(user)
+
       const newPost = new Post({
         body,
         user: user.indexOf,
