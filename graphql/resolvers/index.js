@@ -3,6 +3,10 @@ import usersResolvers from './users.js'
 import commentsResolvers from './comments.js'
 
 export default {
+  Post: {
+    likeCount: (parent) => parent.likes.length,
+    commentCount: (parent) => parent.comments.length
+  },
   Query: {
     ...postsResolvers.Query
   },
@@ -10,5 +14,8 @@ export default {
     ...usersResolvers.Mutation,
     ...postsResolvers.Mutation,
     ...commentsResolvers.Mutation
+  },
+  Subscription: {
+    ...postsResolvers.Subscription,
   }
 }

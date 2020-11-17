@@ -8,14 +8,14 @@ import resolvers from './graphql/resolvers/index.js'
 
 const env = dotenv.config()
 
-const { ApolloServer } = apollo
+const { ApolloServer, PubSub } = apollo
 
-
+const pubsub = new PubSub()
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({req}) => ({ req })
+  context: ({req}) => ({ req, pubsub })
 })
 // console.log(process.env.DB_NAME)
 
