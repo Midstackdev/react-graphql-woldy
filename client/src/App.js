@@ -14,11 +14,10 @@ function App() {
   return (
     <Router>
       <Container>
-        <MenuBar>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-        </MenuBar>
+        <MenuBar />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
       </Container>
     </Router>
   );

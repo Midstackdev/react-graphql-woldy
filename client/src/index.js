@@ -5,7 +5,7 @@ import ApolloProvider from './ApolloProvider';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  ApolloProvider,
+    ApolloProvider,
   document.getElementById('root')
 );
 
