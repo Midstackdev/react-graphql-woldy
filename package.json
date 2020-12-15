@@ -12,6 +12,7 @@
     "default": "./index.mjs"
   },
   "scripts": {
+    "serve": "node index",
     "start": "nodemon index"
   },
   "keywords": [],
