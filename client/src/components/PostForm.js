@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client'
 
 import { Form, Button } from 'semantic-ui-react'
 import { useForm } from '../util/hooks'
+import { FETCH_POST_QUERY } from '../util/graphql'
 
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
@@ -12,8 +13,12 @@ function PostForm() {
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
     variables: values,
-    update(_, result){
-      console.log(result)
+    update(proxy, result){
+      const data = proxy.readQuery({
+        query: FETCH_POST_QUERY
+      })
+      data.getPosts = [result.data.createPost, ...data.getPosts]
+      proxy.writeQuery({ query: FETCH_POST_QUERY, data })
       values.body = ''
     }
   })
